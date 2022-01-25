@@ -8593,6 +8593,11 @@ vm2@^3.9.3:
   resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.9.5.tgz#5288044860b4bbace443101fcd3bddb2a0aa2496"
   integrity sha512-LuCAHZN75H9tdrAiLFf030oW7nJV5xwNMuk1ymOZwopmuK3d2H4L1Kv4+GFHgarKiLfXXLFU+7LDABHnwOkWng==
 
+vue-blur-loader@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-blur-loader/-/vue-blur-loader-1.0.1.tgz#da42afbc4b20a18cdb9aa0b6ac685b5ab79ad6eb"
+  integrity sha512-vv96Dph4tZRawFxGMx14sncF5F7D8DDW6wY2MmHdGhxAjQ1UoVaMVNSsK6OziDWc53rssEjqTpjFFWULjTJPKw==
+
 vue-client-only@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"

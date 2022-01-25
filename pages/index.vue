@@ -45,8 +45,9 @@
           
           <div v-for="image in images" :key="image.public_id" class="group relative">
             <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-              <cld-image 
-                :public-id="image.public_id" 
+              <BlurLoader 
+                :src='imagePath(image.public_id)' 
+                :smallSrc='placeholderPath(image.public_id)' 
                 alt="credit" 
                 class="w-full h-full object-center object-cover lg:w-full lg:h-full"
               />
@@ -62,42 +63,62 @@
     </div>
 
   </div>
-</div>
 
 </template>
 
 <script>
+
+import BlurLoader from 'vue-blur-loader'
+
 export default {
   name: 'IndexPage',
+  components:{
+    BlurLoader
+  },
   data(){
     return {
       images: [
-    {
-      public_id:'nuxtjs-low-quality-placeholder/ryan-ancill-aJYO8JmVodY-unsplash.jpg',
-      credit: 'Photo by <a href="https://unsplash.com/@ryanancill?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ryan Ancill</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
-    },
-    {
-      public_id:'nuxtjs-low-quality-placeholder/ali-karimiboroujeni-XAwyrABB2IA-unsplash.jpg',
-      credit:'Photo by <a href="https://unsplash.com/@alikarimi_photography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ali Karimiboroujeni</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
-    },
-    {
-      public_id:'nuxtjs-low-quality-placeholder/nathan-dumlao-f5DHtik4hWc-unsplash.jpg',
-      credit:'Photo by <a href="https://unsplash.com/@nate_dumlao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nathan Dumlao</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
-    },
-    {
-      public_id:'nuxtjs-low-quality-placeholder/pawel-czerwinski-DKzsQT9zUPk-unsplash.jpg',
-      credit:'Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pawel Czerwinski</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
-    },
-    {
-      public_id:'nuxtjs-low-quality-placeholder/toa-heftiba-FV3GConVSss-unsplash.jpg',
-      credit:'Photo by <a href="https://unsplash.com/@heftiba?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Toa Heftiba</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
-    },
-    {
-      public_id:'nuxtjs-low-quality-placeholder/elise-wilcox-Q6GRqKGuswc-unsplash.jpg',
-      credit:'Photo by <a href="https://unsplash.com/@elise_outside?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elise Wilcox</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
-    }
-  ]
+        {
+          public_id:'nuxtjs-low-quality-placeholder/ryan-ancill-aJYO8JmVodY-unsplash',
+          credit: 'Photo by <a href="https://unsplash.com/@ryanancill?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ryan Ancill</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+        },
+        {
+          public_id:'nuxtjs-low-quality-placeholder/ali-karimiboroujeni-XAwyrABB2IA-unsplash',
+          credit:'Photo by <a href="https://unsplash.com/@alikarimi_photography?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Ali Karimiboroujeni</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+        },
+        {
+          public_id:'nuxtjs-low-quality-placeholder/nathan-dumlao-f5DHtik4hWc-unsplash',
+          credit:'Photo by <a href="https://unsplash.com/@nate_dumlao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nathan Dumlao</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+        },
+        {
+          public_id:'nuxtjs-low-quality-placeholder/pawel-czerwinski-DKzsQT9zUPk-unsplash',
+          credit:'Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pawel Czerwinski</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+        },
+        {
+          public_id:'nuxtjs-low-quality-placeholder/toa-heftiba-FV3GConVSss-unsplash',
+          credit:'Photo by <a href="https://unsplash.com/@heftiba?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Toa Heftiba</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>',
+        },
+        {
+          public_id:'nuxtjs-low-quality-placeholder/elise-wilcox-Q6GRqKGuswc-unsplash',
+          credit:'Photo by <a href="https://unsplash.com/@elise_outside?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elise Wilcox</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
+        }
+      ]
     };
+  },
+  methods:{
+    imagePath(publicId){ 
+      return this.$cloudinary.image.url(`${publicId}.jpg`);
+    },
+    placeholderPath(publicId){
+      return this.$cloudinary.image.url(
+        `${publicId}.svg`, 
+        {
+          effect: "cartoonify:colors:2:detail:0.1",
+          width: 150,
+          crop:'scale'
+        }
+      );
+    }
   }
 }
 </script>
