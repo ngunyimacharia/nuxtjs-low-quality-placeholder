@@ -68,7 +68,7 @@
 
 <script>
 
-import BlurLoader from 'vue-blur-loader'
+import BlurLoader from 'vue-blur-loader/BlurLoader.vue';
 
 export default {
   name: 'IndexPage',
